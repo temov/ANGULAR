@@ -11,6 +11,7 @@ export class CarsListComponent {
   cars_list:Car[]=[];
   filteredCars: Car[] = [];
   showAllCars: boolean = true;
+  sortDirection: 'asc' | 'desc' = 'asc';
   
 
   filterCars(filter: string) {
@@ -29,6 +30,10 @@ export class CarsListComponent {
 
   toggleRented(car: Car) {
     car.isRented = !car.isRented;
+  }
+
+   toggleSort() {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
 
 }

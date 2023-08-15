@@ -37,6 +37,13 @@
           </button>
 
     </div> 
+    <div >
+        <label for="sortDirection">Sort by Model:</label>
+        <select class="sortDirection" [(ngModel)]="sortDirection" (change)="toggleSort()">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
 
 </section>
     
