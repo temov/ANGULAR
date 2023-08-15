@@ -33,7 +33,7 @@ export class CarsListComponent {
   }
 
    toggleSort() {
-    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.sortDirection === 'asc' ? 'desc' : 'asc';
   }
 
 }
