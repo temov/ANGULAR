@@ -1,45 +1,22 @@
 
-<!-- First solution -->
-<!-- <section class="container">
-    <div class="carCard">
-        <h3>Model:{{cars_list[0].model}}</h3>
-        <p>YearOfProduction:{{cars_list[0].yearOfProduction}}</p>
-        <p>PriceToRent:{{cars_list[0].priceToRent}}</p>
 
-    </div> 
-    <div class="carCard">
-        <h3>Model:{{cars_list[1].model}}</h3>
-        <p>YearOfProduction:{{cars_list[1].yearOfProduction}}</p>
-        <p>PriceToRent:{{cars_list[1].priceToRent}}</p>
-
-    </div>
-    <div class="carCard">
-        <h3>Model:{{cars_list[2].model}}</h3>
-        <p>YearOfProduction:{{cars_list[2].yearOfProduction}}</p>
-        <p>PriceToRent:{{cars_list[2].priceToRent}}</p>
-
-    </div>
-
-</section> -->
-
-<!-- Second solution -->
 
 <section class="container">
     <app-filter-options style = 'width:100%;height: 25px;margin-bottom:50px;text-align: center;'(filterSelected)="filterCars($event)"></app-filter-options>
-    <div *ngFor="let car of showAllCars ? cars_list : filteredCars| carSort:sortDirection" class="carCard">
+    <div *ngFor="let car of showAllCars? cars_list: filteredCars| carSort:sortDirection" class="carCard">
         <img [src]="car.image" alt="{{ car.model }}">
         <h3>Model:{{car.model}}</h3>
         <p>YearOfProduction:{{car.yearOfProduction}}</p>
         <p>PriceToRent:{{car.priceToRent}}</p>
         <p *ngIf = "!car.isRented" class="green">Avaliable for rent</p>
-        <button (click)="car.isRented ? toggleRented(car) : toggleRented(car)">
+        <button (click)="toggleRented(car.id)">
             {{ car.isRented ? 'Return the Car' : 'Rent' }}
           </button>
 
     </div> 
     <div >
         <label for="sortDirection">Sort by Model:</label>
-        <select class="sortDirection" [(ngModel)]="sortDirection" (ngModelChange)="toggleSort()">
+        <select class="sortDirection" [(ngModel)]="sortDirection" (change)="toggleSort()">
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
