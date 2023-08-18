@@ -28,20 +28,10 @@ export class CarsListComponent {
 
 
 
-  toggleRented(carId:number) {
-    // car.isRented = !car.isRented;
+  toggleRented(car:Car) {
+    car.isRented = !car.isRented;
 
-    this.filteredCars = this.filteredCars.map((car)=>{
-
-      if(car.id === carId && !car.isRented){
-        return{
-          ...car,
-          isRented:true
-        }
-      }
-      return car
-        
-    })
+    
   }
 
    toggleSort() {

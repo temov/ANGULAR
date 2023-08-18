@@ -3,13 +3,13 @@
 
 <section class="container">
     <app-filter-options style = 'width:100%;height: 25px;margin-bottom:50px;text-align: center;'(filterSelected)="filterCars($event)"></app-filter-options>
-    <div *ngFor="let car of showAllCars? cars_list: filteredCars| carSort:sortDirection" class="carCard">
+    <div *ngFor="let car of (showAllCars? (cars_list| carSort:sortDirection): (filteredCars| carSort:sortDirection))" class="carCard">
         <img [src]="car.image" alt="{{ car.model }}">
         <h3>Model:{{car.model}}</h3>
         <p>YearOfProduction:{{car.yearOfProduction}}</p>
         <p>PriceToRent:{{car.priceToRent}}</p>
         <p *ngIf = "!car.isRented" class="green">Avaliable for rent</p>
-        <button (click)="toggleRented(car.id)">
+        <button (click)="toggleRented(car)">
             {{ car.isRented ? 'Return the Car' : 'Rent' }}
           </button>
 
