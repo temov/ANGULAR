@@ -9,7 +9,10 @@ import { CarRentService } from 'src/app/services/car-rent.service';
 })
 export class CarsListComponent implements OnInit {
   
-      cars-list : Car[]= [];
+      cars_list : Car[]= [];
+      filteredCars : Car[]= [];
+      showAllCars: boolean = true;
+      sortDirection: 'asc' | 'desc' = 'asc';
 
       constructor(
         private readonly carRentService: CarRentService
@@ -18,19 +21,26 @@ export class CarsListComponent implements OnInit {
   ngOnInit(): void {
     
 
-    this.cars-list = this.carRentService.getCars(),
+    this.cars_list = this.carRentService.getCars();
   }
+
+  toggleSort(): void {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  }
+
+  toggleRented(car:Car):void {
+    this.carRentService.toggleRented(car)
+
+    
+}
+
+  
 }
  
 
   
 
 
-function constructor(private: any, readonly: any, carRentService: any, CarRentService: typeof CarRentService) {
-  throw new Error('Function not implemented.');
-}
 
-function ngOnInit() {
-  throw new Error('Function not implemented.');
-}
+
 
