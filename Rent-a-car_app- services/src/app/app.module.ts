@@ -6,6 +6,7 @@ import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { FilterOptionsComponent } from './components/filter-options/filter-options.component';
 import { FormsModule } from '@angular/forms';
 import { CarSortPipe } from './pipes/car-sort.pipe';
+import { CarRentService } from './services/car-rent.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { CarSortPipe } from './pipes/car-sort.pipe';
   imports: [
     BrowserModule,FormsModule
   ],
-  providers: [],
+  providers: [CarRentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
