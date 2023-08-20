@@ -11,11 +11,8 @@ import { Injectable } from '@angular/core';
         filteredCars: Car[] = [];
         showAllCars: boolean = true;
         sortDirection: 'asc' | 'desc' = 'asc';
-        rentedStatus: boolean = true;
 
-        constructor(){}
-
-    private _cars: Car[] = [
+    private cars: Car[] = [
 
             {
               id:1,
@@ -47,28 +44,22 @@ import { Injectable } from '@angular/core';
           ] ;
           
           getCars(): Car[] {
-            return this._cars;
+            return this.cars;
           }
   
           filterCars(filter: string) {
             this.showAllCars = false;
             if (filter === 'rented') {
-              this.filteredCars = this._cars.filter(car => car.isRented);
+              this.filteredCars = this.cars.filter(car => car.isRented);
             } else if (filter === 'available') {
-              this.filteredCars = this._cars.filter(car => !car.isRented);
+              this.filteredCars = this.cars.filter(car => !car.isRented);
             }else if(filter === 'reset'){
               this.filteredCars = [];
               this.showAllCars = true;
             }
           }
-
-          setFilterStatus(isRented: boolean): void {
-            this.rentedStatus = isRented;
-          }
-
-        
   
-            toggleRented(car:Car):void {
+            toggleRented(car:Car) {
                 car.isRented = !car.isRented;
             
                 
