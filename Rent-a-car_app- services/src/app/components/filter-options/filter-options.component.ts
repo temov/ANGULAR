@@ -1,6 +1,4 @@
 import { Component,Output,EventEmitter } from '@angular/core';
-import { Car } from 'src/app/interfaces/car.interface';
-
 import { CarRentService } from 'src/app/services/car-rent.service';
 
 @Component({
@@ -9,13 +7,10 @@ import { CarRentService } from 'src/app/services/car-rent.service';
   styleUrls: ['./filter-options.component.scss']
 })
 export class FilterOptionsComponent {
-
-  constructor(
-    private readonly carRentService: CarRentService
-  ) {}
+  constructor(private readonly carRentService:CarRentService){}
   @Output() filterSelected = new EventEmitter<string>();
 
   applyFilter(filter: string) {
-    this.filterSelected.emit(filter);
+    this.carRentService.filterCars(filter)
   }
 }
