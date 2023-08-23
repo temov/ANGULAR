@@ -1,0 +1,13 @@
+
+<div *ngIf="orderedProducts else noContent">
+    <h2>My Orders</h2>
+    <ul>
+      <li *ngFor="let product of orderedProducts">
+        {{ product.name }} - ${{ product.price }}
+      </li>
+    </ul>
+  </div>
+
+<ng-template #noContent>
+    <p>You haven't made any orders yet.</p>
+  </ng-template>

@@ -1,0 +1,12 @@
+<div class="container">
+    <div *ngFor="let product of products" >
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price }}</p>
+            <p>Stock: {{ product.stock }}</p>
+            <button (click)="onSelectProduct(product)" [disabled]="product.stock === 0">Order</button>
+        </div>
+    </div>
+
+</div>

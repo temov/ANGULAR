@@ -1,0 +1,21 @@
+.container{
+
+    display:flex;
+    text-align:center;
+
+    .product-card{
+
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 10px;
+        padding:10 px;
+        border: 1px solid grey;
+
+        button{
+            border:1px solid black;
+            cursor:pointer;
+        }
+    }
+}
+
