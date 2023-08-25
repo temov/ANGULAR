@@ -1,0 +1,16 @@
+
+<h2>Your Orders</h2>
+
+<div *ngIf="orderedProducts else noContent" class="container">
+   
+    <div *ngFor="let product of orderedProducts" class="order-card">
+      <h3>{{ product.name }}</h3>
+      <p>Quantity/Units: {{ product.stock}}</p>
+      <p>Price per Unit: ${{ product.price }}</p>
+      <p>Total Price: ${{ product.price * product.stock }}</p>
+    </div>
+  </div>
+
+<ng-template #noContent>
+    <p>You haven't made any orders yet.</p>
+</ng-template>
