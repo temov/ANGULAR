@@ -27,7 +27,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 4,
-    name: 'running shoes',
+    name: 'Running shoes',
     description: 'Water repelent',
     price: 80,
     category: 'Sports',

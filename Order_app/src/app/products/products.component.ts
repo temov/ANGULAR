@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products.service';
-import { Router } from '@angular/router';
+
  
 @Component({
   selector: 'app-products',
@@ -13,20 +13,20 @@ export class ProductsComponent implements OnInit {
   products:Product[] = [];
   selectedProduct:Product;
 
-  constructor( private readonly productsService:ProductsService, private readonly router: Router){
+  constructor( private readonly productsService:ProductsService){
 
   }
 
-  ngOnInit(): void {
+    
+    ngOnInit(): void {
     this.products = this.productsService.getProducts();
-    this.productsService._selectedProduct.subscribe(res=>{
-    this.selectedProduct = res;
-    })
-  }
+  
+    }
 
-   onSelectProduct(product:Product){
-    this.productsService.setSelectedProduct(product);
-    this.router.navigate(['/my-orders'])
-   }
+    orderProduct(productId:number): void {
+      this.productsService.orderProduct(productId);
+    }
+  
+
 
 }

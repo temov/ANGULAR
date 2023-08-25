@@ -11,7 +11,7 @@ export class ProductsService {
   constructor() { }
 
   private _products:Product[] = PRODUCTS;
-  _selectedProduct = new EventEmitter<Product>
+  private orderedProducts:Product[] = []
   
 
   getProducts():Product[]{
@@ -19,19 +19,20 @@ export class ProductsService {
     return this._products;
   }
 
-  orderProduct(productId:number):Product|undefined {
+  orderProduct(productId:number){
+      const product = this._products.find((p) => p.id === productId)
 
-    const product = this._products.find(product => product.id === productId);
+        if (product && product.stock > 0) {
+            product.stock--;
+            this.orderedProducts.push(product)
+          }
+  }
+  
 
-    if (product && product.stock > 0) {
-      product.stock--;
-    }
-    return product
+  getOrderedProducts():Product[]{
+
+    return this.orderedProducts;
   }
 
-  setSelectedProduct(product:Product):void{
-
-    this._selectedProduct.emit(product)
-
-  }
+  
 }

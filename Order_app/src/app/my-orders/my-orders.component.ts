@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ProductsComponent } from '../products/products.component';
+
 
 @Component({
   selector: 'app-my-orders',
@@ -11,23 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MyOrdersComponent implements OnInit {
 
-  selectedProduct: Product | undefined ;
+  
 
   orderedProducts: Product[] = [];
 
-  constructor(private readonly productService: ProductsService, private readonly route:ActivatedRoute) {}
+  constructor(private readonly productService: ProductsService) {}
 
   ngOnInit(): void {
 
-    this.route.params.subscribe(params =>{
-
-      const productId = params['/'] // vo mojot slucaj nemam route params bidejki imam poseban ruta za page: my-orders , ne znam kako da postapam tuka
-
-    this.selectedProduct = this.productService.orderProduct(productId)
-    this.orderedProducts = this.productService.setSelectedProduct(product)
-  })
+      this.orderedProducts = this.productService.getOrderedProducts()
+   
+  }
 
   
 
   }
-}
+

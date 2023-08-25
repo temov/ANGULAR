@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class NavigationComponent {
 
-  title:string = 'Order-app'
+  title:string = 'My Order-app'
 
 }
