@@ -6,9 +6,9 @@
     </div>
     <nav>
         <ul>
-            <li><a routerLink="/home" routerLinkActive = "active">Home</a></li>
-            <li><a routerLink="/products" routerLinkActive = "active">Products</a></li>
-            <li><a routerLink="/my-orders" routerLinkActive = "active">My Orders</a></li>
+            <li><a routerLink="" routerLinkActive = "active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+            <li><a routerLink="/products" routerLinkActive = "active" [routerLinkActiveOptions]="{exact: true}">Products</a></li>
+            <li><a routerLink="/my-orders" routerLinkActive = "active" [routerLinkActiveOptions]="{exact: true}">My Orders</a></li>
             <li><a routerLink="/about" routerLinkActive = "active">About</a></li>
         </ul>
           
