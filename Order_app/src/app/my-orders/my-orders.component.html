@@ -1,12 +1,11 @@
 
-<div *ngIf="orderedProducts else noContent">
-    <h2>My Orders</h2>
-    <ul>
-      <li *ngFor="let product of orderedProducts">
+<h2>My Orders</h2>
+
+<div *ngIf="orderedProducts else noContent" >
+    <div *ngFor="let product of orderedProducts"  class="order-card">
         {{ product.name }} - ${{ product.price }}<br/>
         <p>Stock:{{product.stock}}</p>
-      </li>
-    </ul>
+    </div>
   </div>
 
 <ng-template #noContent>
