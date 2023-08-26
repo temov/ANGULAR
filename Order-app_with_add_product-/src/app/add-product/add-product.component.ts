@@ -1,8 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
-import { Product } from '../interfaces/product';
+
 import { ProductsService } from '../services/products.service';
 
 @Component({
@@ -13,7 +13,6 @@ import { ProductsService } from '../services/products.service';
 export class AddProductComponent implements OnInit {
 
   productForm: FormGroup;
-  categories = ['Books', 'Clothing', 'Sports', 'Electronics'];
 
   constructor( private productsService:ProductsService){
 
@@ -24,9 +23,17 @@ export class AddProductComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       price: new FormControl ('', [Validators.required, Validators.min(0)]),
-      category: new FormControl ('', [Validators.required, Validators.pattern(/^(Books|Clothing|Sports|Electronics)$/)]),
+      category: new FormControl ('', [Validators.required, this.validateCategory]),
       stock: new FormControl('', [Validators.required, Validators.min(0)]),
     });
+  }
+
+  validateCategory = (control: FormControl): {[key: string]: boolean} | null => {
+    const validCategories = ['Books', 'Clothing', 'Sports', 'Electronics'];
+
+    return validCategories.includes(control.value) ? null : { invalidCategory: true };
+
+    
   }
 
   onFormSubmit() {
@@ -38,6 +45,7 @@ export class AddProductComponent implements OnInit {
       this.productsService.addProduct(newProduct);
       this.productForm.reset();
     }
+    
   }
 
 }
