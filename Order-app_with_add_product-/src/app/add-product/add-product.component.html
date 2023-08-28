@@ -4,31 +4,44 @@
 <form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
     <div class="form-group">
         <label for="name">Name:</label>
-        <input id="name" type="text" formControlName="name"/>
+        <input id="name" type="text" formControlName="name">
+        <div *ngIf="productForm.get('name')?.hasError('required') && productForm.get('name')?.touched">
+            Name is required.
+        </div>
 
     </div>
     <div class="form-group">
         <label for="description">Description:</label>
         <input id="description" type="textarea" formControlName="description"/>
+        <div *ngIf="productForm.get('description')?.hasError('required') && productForm.get('description')?.touched">
+            Description is required.
+        </div>
 
     </div>
     <div class="form-group">
         <label for="price">Price:</label>
         <input id="price" type="text" formControlName="price" min="1"/>
+        <div *ngIf="productForm.get('price')?.hasError('required') && productForm.get('price')?.touched">
+            Price is required.
+        </div>
 
     </div>
     <div class="form-group">
         <label for="category">Category:</label>
         <input id="category" formControlName="category" />
+        <div *ngIf="productForm.get('category')?.hasError('required') && productForm.get('category')?.touched">
+            Category is required.
+        </div>
         
-        
-
     </div>
     <div class="form-group">
         <label for="stock">Stock:</label>
         <input id="stock" type="number" formControlName="stock" min="0"
         max="20"/>
-
+        
+        <div *ngIf="productForm.get('stock')?.hasError('required') && productForm.get('stock')?.touched">
+            Stock is required.
+        </div>
     </div>
     <button type="submit" [disabled]="productForm.invalid">Add Product</button>
 </form>
