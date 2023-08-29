@@ -17,7 +17,7 @@ export class MyOrdersComponent {
   orderedProducts: Product[] = [];
 
   constructor(private readonly productService: ProductsService) {
-    this.productService.orderedProducts$.subscribe((orderedProducts) => {
+    this.productService.orderedProducts$.subscribe((orderedProducts: Product[]) => {
     this.orderedProducts = orderedProducts;
   
   });

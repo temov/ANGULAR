@@ -3,11 +3,11 @@
 
 <div *ngIf="orderedProducts else noContent" class="container">
    
-    <div *ngFor="let product of orderedProducts" class="order-card">
-      <h3>{{ product.name }}</h3>
-      <p>Quantity/Units: {{ product.stock}}</p>
-      <p>Price per Unit: ${{ product.price }}</p>
-      <p>Total Price: ${{ product.price * product.stock }}</p>
+    <div *ngFor="let order of orderedProducts" class="order-card">
+      <h3>{{ order.name }}</h3>
+      <p>Quantity/Units: {{ order.counter}}</p>
+      <p>Price per Unit: ${{ order.price }}</p>
+      <p>Total Price: ${{ order.price * order.counter}}</p>
     </div>
   </div>
 
