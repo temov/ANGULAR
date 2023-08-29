@@ -17,7 +17,7 @@ export class ProductsService {
   private productsSubject = new BehaviorSubject<Product[]>(this._products)
   products$: Observable<Product[]> = this.productsSubject.asObservable();
 
-  private orderedProductsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private orderedProductsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.orderedProducts);
   orderedProducts$: Observable<Product[]> = this.orderedProductsSubject.asObservable();
 
   
@@ -28,20 +28,45 @@ export class ProductsService {
   }
 
   orderProduct(productId:number):void{
-      const product = this._products.find((p) => p.id === productId)
 
-        if (product && product.stock > 0) {
-            product.stock--;
-            this.productsSubject.next([...this._products])
-            this.orderedProductsSubject.next([...this.orderedProductsSubject.value, { ...product }]);
-          }
+    const productToBuy = this._products.find((p) => p.id === productId)
+     
+
+      if(productToBuy){
+
+        console.log(productToBuy)
+        const productInCart = this.orderedProducts.find((p) => p.id === productId);
+
+      if(!productInCart){
+
+        console.log('Product is not in cart');
+        productToBuy.stock--;
+        this.orderedProducts.push({...productToBuy, counter:1});
+        this.orderedProductsSubject.next([...this.orderedProducts]);
+        console.log(this.orderedProducts);
+
+      };
+      if(productInCart){
+
+        console.log('Product is already in cart');
+        productToBuy.stock--;
+        productInCart.counter && productInCart.counter++
+        this.orderedProductsSubject.next([...this.orderedProducts]);
+        console.log(this.orderedProducts);
+
+      };
+      this.productsSubject.next([...this._products])
+      
   }
+}
   
 
   getOrderedProducts():Product[]{
 
     return this.orderedProducts;
   }
-
+  
   
 }
+
+
