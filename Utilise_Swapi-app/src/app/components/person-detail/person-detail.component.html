@@ -1,0 +1,10 @@
+<div *ngIf="person$ | async as person; else loading">
+    <h2>Person Details</h2>
+    <p><strong>Name:</strong> {{ person.fullName }}</p>
+    <p><strong>Gender:</strong> {{ person.gender }}</p>
+    <p><strong>Birth Year:</strong> {{ person.birthYear }}</p>
+    <p><strong>Height:</strong> {{ person.height }}</p>
+    <p><strong>Mass:</strong> {{ person.mass }}</p>
+  </div>
+  <ng-template #loading>Loading...</ng-template>
+  
