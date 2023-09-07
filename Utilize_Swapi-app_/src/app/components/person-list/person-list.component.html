@@ -1,0 +1,15 @@
+<div class="people-list">
+    <h2>SWAPI Characters List</h2>
+    <ul>
+      <li *ngFor="let person of personData | async">
+        <div class="person-card">
+          <h3>{{ person.fullName }}</h3>
+          <p>Gender: {{ person.gender }}</p>
+          <p>Birth Year: {{ person.birthYear }}</p>
+          <p>Height: {{ person.height }} cm</p>
+          <p>Mass: {{ person.mass }} kg</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
