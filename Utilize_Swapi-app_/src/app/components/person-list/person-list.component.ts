@@ -17,7 +17,6 @@ export class PersonListComponent implements OnInit {
 
   constructor(private readonly store: Store<AppState>) {
     
-    this.personData = this.store.select(selectPeople);
   
   }
 
@@ -25,9 +24,10 @@ export class PersonListComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.personData.subscribe((data) => {
-      console.log('Person Data:', data); // Check if data is available
-    });
+    this.store.dispatch(loadPeople()) // subscribe to the selector and thus loading people data
+    
+    this.personData = this.store.select(selectPeople);// Select the list of people from the store
+
   }
   
 
