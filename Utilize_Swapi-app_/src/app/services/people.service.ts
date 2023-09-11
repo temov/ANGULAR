@@ -12,6 +12,6 @@ export class PeopleService {
   constructor(private readonly http: HttpClient) {}
 
   getPeople = () => {
-    return this.http.get<Person[]>(this.URL);
+    return this.http.get<any>(this.URL);
   };
 }
