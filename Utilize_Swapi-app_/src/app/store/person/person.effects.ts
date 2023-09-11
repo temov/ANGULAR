@@ -3,6 +3,7 @@ import {Actions, createEffect, ofType}  from '@ngrx/effects';
 import { PeopleService } from "src/app/services/people.service";
 import { loadPeople, loadPeopleSuccess } from "./person.actions";
 import { map, switchMap } from "rxjs";
+import { Person } from "src/app/interfaces/person.interface";
 
 @Injectable()
 export class PersonsEffects {
@@ -16,7 +17,11 @@ export class PersonsEffects {
       ofType(loadPeople),
       switchMap(() =>
         this.peopleService.getPeople().pipe(
-          map((data) => loadPeopleSuccess({ people:data })),
+          map((data) => {
+            console.log(data);
+            const people: Person[] = data.results;
+            return loadPeopleSuccess({ people });
+          }),
           
         )
       )
